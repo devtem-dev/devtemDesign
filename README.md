@@ -1,4 +1,4 @@
-# devtemDesign
+# devtemdesign
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CDN](https://img.shields.io/badge/CDN-jsDelivr-orange)](https://cdn.jsdelivr.net/npm/devtemDesign@0.0.1/)
