@@ -1,6 +1,6 @@
 {
   "name": "devtemdesign",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "One configuration schema. Infinite animated synthesis. A lightweight, zero-config animated page engine with glass-morphism, ambient motion, and reactive component schema.",
   "main": "script.js",
   "style": "style.css",
