@@ -1,14 +1,15 @@
-# devtemdesign
+# devtemDesign
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![CDN](https://img.shields.io/badge/CDN-jsDelivr-orange)](https://cdn.jsdelivr.net/npm/devtemDesign@0.0.1/)
-[![Version](https://img.shields.io/badge/version-0.0.1-alpha-red)](https://github.com/devtem-dev/devtemDesign)
+[![CDN](https://img.shields.io/badge/CDN-jsDelivr-orange)](https://cdn.jsdelivr.net/npm/devtemdesign/)
+[![Version](https://img.shields.io/badge/npm-version)](https://www.npmjs.com/package/devtemdesign)
+
 
 **One configuration schema. Infinite animated synthesis.**
 
 `devtemDesign` is a lightweight, zero-configuration animated page engine. Stop building standard UI boilerplate — let the engine paint the viewport with dynamic templates, glass-morphism, ambient motion, and a reactive component schema.
 
-**npm:** `npm i devtemDesign@0.0.1`  
+**npm:** `npm i devtemdesign`  
 **CDN:** [design.devtem.org](https://design.devtem.org)  
 **GitHub:** [github.com/devtem-dev/devtemDesign](https://github.com/devtem-dev/devtemDesign)
 
@@ -28,8 +29,8 @@
 
 ### 1. Add the CDN links to your HTML
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devtemDesign@0.0.1/style.css">
-<script src="https://cdn.jsdelivr.net/npm/devtemDesign@0.0.1/script.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devtemdesign@0.0.2/style.css">
+<script src="https://cdn.jsdelivr.net/npm/devtemdesign@0.0.2/script.js"></script>
 ```
 
 2. Call the engine with your content
@@ -41,7 +42,7 @@
     template: "cyber",
     logoName: "DEVTEM",
     navLinks: ["Docs", "Sandbox", "API"],
-    ctaText: "npm i devtemDesign",
+    ctaText: "devtemDesign",
     // ... see full config below
   });
 </script>
@@ -153,11 +154,11 @@ We publish automatically to jsDelivr. Use any version:
 
 ```html
 <!-- Latest v0.0.x -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devtemDesign@0.0.1/style.css">
-<script src="https://cdn.jsdelivr.net/npm/devtemDesign@0.0.1/script.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devtemdesign@0.0.2/style.css">
+<script src="https://cdn.jsdelivr.net/npm/devtemdesign@0.0.2/script.js"></script>
 ```
 
-Replace 0.0.1 with any future release tag.
+Replace 0.0.2 with any future release tag.
 
 ---
 
@@ -168,12 +169,12 @@ design.devtem.org
 
 ---
 
-📄 License
+License
 
 MIT © devtem-dev
 
 ---
 
-🙌 Acknowledgments
+Acknowledgments
 
 Built with vanilla CSS/JS — no frameworks, no bloat. Inspired by glassmorphism, orbital animations, and the need for a declarative page builder.
