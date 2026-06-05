@@ -77,7 +77,7 @@
     const navBar = document.createElement('nav');
     navBar.innerHTML = `
       <div class="nav-logo">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 22,8.5 22,19.5 12,23 2,19.5 2,8.5"/></svg>
+        <img src="${config.logo||" https://fscss.devtem.org/assets/images/fscss.png"}" width="24" height="24">
         ${config.logoName || 'CORE'}
       </div>
       <ul class="nav-links">${navLinksItems}</ul>
@@ -153,7 +153,7 @@
     const footerBrandsList = (config.brands ? config.brands.slice(0,5) : []).map(b => `<span>${b}</span>`).join('<span style="opacity:0.4;">·</span>');
     footer.innerHTML = `
       <div class="footer-left">
-        <span class="footer-logo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12,2 22,8.5 22,19.5 12,23 2,19.5 2,8.5"/></svg>${(config.logoName || 'CORE').toUpperCase()}</span>
+        <span class="footer-logo"><img src="${config.logo||" https://fscss.devtem.org/assets/images/fscss.png"}" width="24" height="24">${(config.logoName || 'CORE').toUpperCase()}</span>
         <span class="footer-copy">© ${new Date().getFullYear()} ${config.footerCopy || 'Design engine'}</span>
       </div>
       <div class="footer-brand">${footerBrandsList || 'studio'}</div>
@@ -221,3 +221,4 @@
     }
     setTimeout(() => initInteractions(), 20);
   };
+
