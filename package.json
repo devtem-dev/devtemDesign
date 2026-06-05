@@ -1,4 +1,56 @@
 {
-  "name": "devtemDesign", 
-  "version": "0.0.1", 
-} 
+  "name": "devtemdesign",
+  "version": "0.0.1",
+  "description": "One configuration schema. Infinite animated synthesis. A lightweight, zero-config animated page engine with glass-morphism, ambient motion, and reactive component schema.",
+  "main": "script.js",
+  "style": "style.css",
+  "files": [
+    "script.js",
+    "style.css",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "animation",
+    "ui-engine",
+    "fscss", 
+    "glassmorphism",
+    "landing-page",
+    "template-engine",
+    "css-framework",
+    "javascript",
+    "zero-config",
+    "declarative-ui",
+    "motion-design",
+    "cyberpunk",
+    "design-system",
+    "component-engine"
+  ],
+  "author": {
+    "name": "devtem-dev",
+    "url": "https://github.com/devtem-dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devtem-dev/devtemDesign.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devtem-dev/devtemDesign/issues"
+  },
+  "homepage": "https://design.devtem.org",
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/devtem-dev"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "maintained node versions"
+  ]
+}
