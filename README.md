@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CDN](https://img.shields.io/badge/CDN-jsDelivr-orange)](https://cdn.jsdelivr.net/npm/devtemdesign/)
 [![Version](https://img.shields.io/badge/npm-v0.0.2-green)](https://www.npmjs.com/package/devtemdesign)
-[![Templates](https://img.shields.io/badge/templates-green)](https://devtem.org/home?q=@devtemDesign)
+[![Templates](https://img.shields.io/badge/templates-5-green)](https://devtem.org/home?q=@devtemDesign)
 
 **One configuration schema. Infinite animated synthesis.**
 
