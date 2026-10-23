@@ -1,32 +1,14 @@
 {
   "name": "devtemdesign",
-  "version": "0.0.2",
-  "description": "One configuration schema. Infinite animated synthesis. A lightweight, zero-config animated page engine with glass-morphism, ambient motion, and reactive component schema.",
+  "version": "0.1.0",
+  "description": "One configuration schema. Infinite animated synthesis. Lightweight declarative page engine with glassmorphism, ambient motion, and reactive sections.",
   "main": "script.js",
   "style": "style.css",
-  "files": [
-    "script.js",
-    "style.css",
-    "README.md"
-  ],
-  "scripts": {
-    "test": "echo \"No tests yet\" && exit 0"
-  },
+  "files": ["script.js", "style.css", "README.md"],
   "keywords": [
-    "animation",
-    "ui-engine",
-    "fscss", 
-    "glassmorphism",
-    "landing-page",
-    "template-engine",
-    "css-framework",
-    "javascript",
-    "zero-config",
-    "declarative-ui",
-    "motion-design",
-    "cyberpunk",
-    "design-system",
-    "component-engine"
+    "animation", "ui-engine", "fscss", "glassmorphism", "landing-page",
+    "template-engine", "css-framework", "javascript", "zero-config",
+    "declarative-ui", "motion-design", "design-system", "component-engine"
   ],
   "author": {
     "name": "devtem-dev",
@@ -37,20 +19,12 @@
     "type": "git",
     "url": "git+https://github.com/devtem-dev/devtemDesign.git"
   },
-  "bugs": {
-    "url": "https://github.com/devtem-dev/devtemDesign/issues"
-  },
+  "bugs": { "url": "https://github.com/devtem-dev/devtemDesign/issues" },
   "homepage": "https://design.devtem.org",
   "funding": {
     "type": "individual",
-    "url": "https://github.com/sponsors/devtem-dev"
+    "url": "https://github.com/sponsors/Figsh"
   },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "browserslist": [
-    "defaults",
-    "not ie 11",
-    "maintained node versions"
-  ]
+  "engines": { "node": ">=14.0.0" },
+  "browserslist": ["defaults", "not ie 11", "maintained node versions"]
 }
