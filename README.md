@@ -5,6 +5,8 @@
 [![Version](https://img.shields.io/badge/npm-v0.1.0-green)](https://www.npmjs.com/package/devtemdesign)
 [![Templates](https://img.shields.io/badge/templates-7-green)](https://design.devtem.org)
 
+[![DevtemDesign Og image](/devtemdesign.jpg)](https://design.devtem.org)
+
 **One configuration schema. Infinite animated synthesis.**
 
 `devtemDesign` is a lightweight, zero-dependency page engine. Pass one config object and it paints a full landing page: glass cards, ambient motion, reveal animations, a mobile drawer, pricing, FAQ and footer. Plain HTML, CSS and JS. No framework, no build step.
