@@ -2,41 +2,45 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CDN](https://img.shields.io/badge/CDN-jsDelivr-orange)](https://cdn.jsdelivr.net/npm/devtemdesign/)
-[![Version](https://img.shields.io/badge/npm-v0.0.2-green)](https://www.npmjs.com/package/devtemdesign)
-[![Templates](https://img.shields.io/badge/templates-5-green)](https://devtem.org/s?s=@devtemDesign)
+[![Version](https://img.shields.io/badge/npm-v0.1.0-green)](https://www.npmjs.com/package/devtemdesign)
+[![Templates](https://img.shields.io/badge/templates-7-green)](https://design.devtem.org)
 
 **One configuration schema. Infinite animated synthesis.**
 
-`devtemDesign` is a lightweight, zero-configuration animated page engine. Stop building standard UI boilerplate — let the engine paint the viewport with dynamic templates, glassmorphism, ambient motion, and a reactive component schema.
+`devtemDesign` is a lightweight, zero-dependency page engine. Pass one config object and it paints a full landing page: glass cards, ambient motion, reveal animations, a mobile drawer, pricing, FAQ and footer. Plain HTML, CSS and JS. No framework, no build step.
 
-**npm:** `npm i devtemdesign`  
-**CDN:** [design.devtem.org](https://design.devtem.org)  
+**npm:** `npm i devtemdesign`
+**CDN:** [design.devtem.org](https://design.devtem.org)
 **GitHub:** [github.com/devtem-dev/devtemDesign](https://github.com/devtem-dev/devtemDesign)
 
 ---
 
 ## Features
 
-- **4 Dynamic Templates** — `cyber`, `figsh`, `aurora`, `monochrome` — switch themes instantly.
-- **Ambient Micro-Interactions** — custom magnetic cursor, ripple effects, and floating orb backgrounds.
-- **Component Schema** — inject `features`, `panels`, brand tickers, and navigation from a single config object.
-- **Mobile Navigation** — hamburger menu with animated open/close, auto-closes on link tap.
-- **Declarable Footer** — full column layout, social icons, legal links, and tagline — all from config.
-- **Zero Runtime Bundles** — pure CSS/JS. Intersection Observer + CSS variables drive everything.
-- **Declarative API** — one function call builds the complete animated layout.
+- **7 templates:** `figsh`, `cyber`, `aurora`, `monochrome`, `sunset`, `ocean`, and `paper` (light).
+- **Live theme switching** with an optional theme button that remembers the visitor's choice.
+- **Sections from config:** hero, brand marquee, stats, features, steps, panels, pricing, FAQ, closing CTA, footer.
+- **Interactive:** animated count-up stats, Monthly/Yearly pricing toggle, FAQ accordion, card spotlight, scroll progress bar, active nav link, back-to-top button.
+- **Ambient motion:** floating orbs, magnetic cursor, click ripples. All respect `prefers-reduced-motion`.
+- **Responsive:** fluid grids, slide-in mobile drawer (closes on link tap, Escape, or resize), hover effects only on devices that have hover.
+- **Accessible:** skip link, visible focus rings, ARIA on the menu, `aria-current` on the active link, native `<details>` for FAQ.
+- **Clean lifecycle:** `devtemDesign()` returns `{ setTemplate, destroy }`, and calling it again on the same container cleans up first.
 
 ---
 
 ## Quick Start
 
-### 1. Add CDN links to your HTML
+### 1. Add the CDN links
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devtemdesign@0.0.2/style.css">
-<script src="https://cdn.jsdelivr.net/npm/devtemdesign@0.0.2/script.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devtemdesign@0.1.0/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/devtemdesign@0.1.0/script.min.js"></script>
 ```
 
-### 2. Call the engine with your content
+Font Awesome is optional. It is only needed for feature icons and footer social icons.
+
+### 2. Call the engine
 
 ```html
 <div id="app-root"></div>
@@ -44,16 +48,16 @@
   devtemDesign("app-root", {
     template: "cyber",
     logoName: "DEVTEM",
-    navLinks: [
-      { label: "Docs",    href: "/docs"    },
-      { label: "Sandbox", href: "/sandbox" },
-      { label: "API",     href: "/api"     }
-    ],
-    ctaText: "CDN →",
-    // ... see full config below
+    heroTitleLine1: "Declarative UI,",
+    heroTitleLine2: "Zero-Config Motion",
+    heroSubtitle: "One config object. Complete animated landing.",
+    primaryBtnText: "Build your page",
+    primaryBtnHref: "/docs"
   });
 </script>
 ```
+
+Everything except the hero is optional. A section only renders when its config key is present.
 
 ---
 
@@ -61,251 +65,287 @@
 
 `devtemDesign(containerId, config)`
 
+> Text fields are inserted as HTML so you can use icons and inline markup. Only pass trusted content.
+
 ### Core
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `template` | `string` | `"figsh"` | Visual theme: `"figsh"`, `"cyber"`, `"aurora"`, `"monochrome"` |
-| `logo` | `string` | fscss logo | URL for navbar/footer logo image |
-| `logoName` | `string` | `"CORE"` | Brand name displayed in navbar & footer |
+| `template` | `string` | `"figsh"` | One of the 7 templates |
+| `theme` | `object` | `{}` | Token overrides, e.g. `{ accent: "#ff4d6d" }` |
+| `themeSwitcher` | `boolean \| string[]` | `false` | Adds a theme button. Pass an array of template names to limit the cycle. Choice is saved in `localStorage` |
+| `cursor` | `boolean` | `true` | Set `false` to disable the custom cursor |
+| `logo` | `string` | fscss logo | Logo image URL for navbar and footer |
+| `logoName` | `string` | `"CORE"` | Brand name |
+| `logoHref` | `string` | `"/"` | Where the navbar brand links to |
 
 ### Navigation
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `navLinks` | `string[] \| object[]` | `["Discover","Studio","Archive","Journal"]` | Nav items. Pass plain strings or `{ label, href }` objects |
-| `ctaText` | `string` | `"Launch →"` | Navbar call-to-action button text (supports HTML) |
-
-**`navLinks` accepts both formats:**
-
-```js
-// Plain strings (href defaults to "#")
-navLinks: ["Docs", "Sandbox", "API"]
-
-// Objects with href
-navLinks: [
-  { label: "Docs",    href: "/docs"    },
-  { label: "npm",     href: "https://npmjs.com/package/devtemdesign" }
-]
-```
+| `navLinks` | `string[] \| object[]` | Features, How it works, Pricing | Plain strings (href `#`) or `{ label, href }` |
+| `ctaText` | `string` | `"Get started"` | Navbar button text |
+| `ctaHref` | `string` | `"#"` | Navbar button link |
 
 ### Hero
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `heroTag` | `string` | `"design engine active"` | Eyebrow tag above the main title |
-| `heroTitleLine1` | `string` | `"Generative"` | First part of the H1 |
-| `heroTitleLine2` | `string` | `"Page Weaver"` | Second part — rendered as gradient text |
-| `heroSubtitle` | `string` | default description | Supporting paragraph below H1 |
-| `primaryBtnText` | `string` | `"Explore Templates"` | Main hero button (supports HTML) |
-| `secondaryBtnText` | `string` | `"Docs →"` | Secondary hero button (supports HTML) |
-| `brands` | `string[]` | `[]` | Brand names for ticker marquee + hero chips |
-| `brandsSubtitle` | `string` | `"global innovators, design pioneers"` | Caption below brand chips |
+| `heroBadge` | `string` | none | Small pill above the title |
+| `heroTitleLine1` | `string` | `"Declarative UI,"` | First line of the H1 |
+| `heroTitleLine2` | `string` | `"Zero-Config Motion"` | Second line, rendered as animated gradient text |
+| `heroSubtitle` | `string` | default copy | Paragraph below the H1 |
+| `primaryBtnText` / `primaryBtnHref` | `string` | `"Get started"` / `"#"` | Main button |
+| `secondaryBtnText` / `secondaryBtnHref` | `string` | none | Ghost button, only rendered if text is set |
+| `brands` | `string[]` | `[]` | Feeds the hero chips and the scrolling marquee |
+| `brandsSubtitle` | `string` | `"Built for modern product teams"` | Caption under the chips |
 
-### Features Grid
+### Stats
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `stats` | `object[]` | `{ value, label }`. Values count up when scrolled into view. Prefix, suffix, commas and decimals are kept: `"$1,200"`, `"99.9%"`, `"12k+"` |
+| `statsId` | `string` | Anchor id for the section (default `"stats"`) |
+
+### Features, Steps, Panels
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `featuresSectionLabel` | `string` (HTML) | `"core modules"` | Label above the grid (supports HTML / icons) |
-| `featuresSectionTitle` | `string` | default title | Heading for the features section |
-| `features` | `object[]` | `[]` | `{ title, desc, icon }` — `icon` accepts HTML or emoji |
+| `featuresLabel` / `featuresTitle` / `featuresSub` | `string` | defaults | Section heading. Anchor id is `#features` |
+| `features` | `object[]` | `[]` | `{ title, desc, icon }`. `icon` accepts HTML or emoji |
+| `stepsLabel` / `stepsTitle` / `stepsSub` | `string` | defaults | Section heading. Anchor id is `#how` |
+| `steps` | `object[]` | `[]` | `{ title, desc }`, numbered automatically |
+| `panelsLabel` / `panelsTitle` / `panelsSub` | `string` | none | Optional heading above panels |
+| `panels` | `object[]` | `[]` | `{ tag, title, desc }` |
 
-### Panels
+### Pricing
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `panels` | `object[]` | `[]` | `{ tag, title, desc }` for additional content blocks |
+| Property | Type | Description |
+|----------|------|-------------|
+| `pricingLabel` / `pricingTitle` / `pricingSub` | `string` | Section heading. Anchor id is `#pricing` |
+| `yearlyBadge` | `string` | Small label on the Yearly toggle, e.g. `"Save 20%"` |
+| `pricing` | `object[]` | See below |
 
-### Footer
-
-The footer is fully declarable via a `footer` config object. All fields are optional — omit any you don't need.
+Each plan:
 
 ```js
-footer: {
-  tagline:  "Short brand tagline displayed below the logo.",
-  copy:     "© 2025 Figsh Digital. All rights reserved.",
-
-  columns: [
-    {
-      heading: "Product",
-      links: [
-        { label: "Documentation", href: "/docs"      },
-        { label: "Sandbox",       href: "/sandbox"   },
-        { label: "Changelog",     href: "/changelog" }
-      ]
-    },
-    {
-      heading: "Company",
-      links: [
-        { label: "About",   href: "/about"   },
-        { label: "Blog",    href: "/blog"    },
-        { label: "Contact", href: "/contact" }
-      ]
-    }
-  ],
-
-  social: [
-    { icon: "fab fa-github",  href: "https://github.com/devtem-dev", label: "GitHub"  },
-    { icon: "fab fa-twitter", href: "https://twitter.com/devtemple", label: "Twitter" },
-    { icon: "fab fa-npm",     href: "https://npmjs.com/package/devtemdesign", label: "npm" }
-  ],
-
-  legal: [
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Use",   href: "/terms"   },
-    { label: "License (MIT)",  href: "/license" }
-  ]
+{
+  tier: "Pro",
+  amount: "$12",
+  period: "/mo",
+  desc: "For product landings that need more.",
+  features: ["Everything in Free", "Priority support"],
+  cta: "Go Pro",
+  href: "/signup",
+  featured: true,          // highlights the card
+  badge: "Most popular",   // text on the featured ribbon
+  yearly: { amount: "$120", period: "/yr" }   // optional
 }
 ```
 
-> **Legacy support:** `config.footerCopy` (plain string) is still accepted as a fallback copyright line — no breaking change.
+The Monthly/Yearly toggle appears automatically when at least one plan has `yearly`. Plans without it keep their price in both views.
+
+### FAQ
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `faqLabel` / `faqTitle` / `faqSub` | `string` | Section heading. Anchor id is `#faq` |
+| `faq` | `object[]` | `{ q, a }`. One item open at a time |
+
+### Closing CTA
+
+```js
+cta: { title: "Ready to build?", sub: "Free forever for open source.", text: "Start now", href: "/docs" }
+```
+
+### Footer
+
+```js
+footer: {
+  tagline: "Declarative UI engine for the modern web.",
+  copy: "© 2026 devtem-dev · MIT",
+  columns: [
+    { heading: "Product", links: [{ label: "Docs", href: "/docs" }] }
+  ],
+  social: [
+    { icon: "fab fa-github", href: "https://github.com/devtem-dev", label: "GitHub" }
+  ],
+  legal: [{ label: "Privacy", href: "/privacy" }]
+}
+```
+
+All fields are optional. `config.footerCopy` still works as a plain copyright fallback.
 
 ---
 
 ## Full Example
 
 ```js
-devtemDesign("app-root", {
-  template: "cyber",
-  logoName: "⍲ DEVTEM",
 
+const page = devtemDesign("app-root", {
+  template: "ocean",
+  themeSwitcher: true,
+  logoName: "DEVTEM",
   navLinks: [
-    { label: "Docs",    href: "/docs"    },
-    { label: "Sandbox", href: "/sandbox" },
-    { label: "API",     href: "/api"     },
-    { label: "npm",     href: "https://npmjs.com/package/devtemdesign" }
+    { label: "Features", href: "#features" },
+    { label: "How it works", href: "#how" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "FAQ", href: "#faq" }
   ],
-  ctaText: "<i class='fab fa-npm'></i> npm i devtemdesign",
+  ctaText: "Try free",
+  ctaHref: "/get-started",
 
-  heroTag:         "Core Framework Alpha // v0.0.2",
-  heroTitleLine1:  "Declarative UI,",
-  heroTitleLine2:  "Zero-Config Motion",
-  heroSubtitle:    "One configuration schema. Infinite animated synthesis.",
-  primaryBtnText:  "<i class='fas fa-book'></i> Get Started",
-  secondaryBtnText:"<i class='fas fa-copy'></i> Copy CDN",
-  brandsSubtitle:  "Powered by open source",
-  brands:          ["NPM", "FSCSS", "DEVTEMPLE", "ESBUILD", "CSS3", "WEBGL"],
+  heroBadge: "Pure CSS + JS engine",
+  heroTitleLine1: "Declarative UI,",
+  heroTitleLine2: "Zero-Config Motion",
+  heroSubtitle: "One config object. Complete animated landing.",
+  primaryBtnText: "Build your page",
+  primaryBtnHref: "/docs",
+  secondaryBtnText: "View examples",
+  secondaryBtnHref: "/gallery",
+  brands: ["NPM", "FSCSS", "DEVTEMPLE", "ESBUILD", "CSS3"],
+  brandsSubtitle: "Powered by open source",
 
-  featuresSectionLabel: "<i class='fas fa-code-branch'></i> CORE MECHANICS",
-  featuresSectionTitle: "Pass raw data. The engine paints itself.",
+  stats: [
+    { value: "7", label: "Templates" },
+    { value: "0", label: "Dependencies" },
+    { value: "12kb", label: "Gzipped" }
+  ],
+
+  featuresTitle: "Stop writing the same landing boilerplate",
   features: [
-    { title: "Deterministic Schema",  desc: "Map JSON to hardware-accelerated layouts.",   icon: "<i class='fas fa-cube'></i>"   },
-    { title: "Micro-Interactions",    desc: "Magnetic cursor + ripple effects + parallax.", icon: "<i class='fas fa-magic'></i>"  },
-    { title: "Adaptive Themes",       desc: "Switch tokens at runtime across all layers.",  icon: "<i class='fas fa-palette'></i>"}
+    { title: "Single schema", desc: "Pass JSON, get a full animated page.", icon: '<i class="fas fa-cube"></i>' },
+    { title: "Mobile drawer", desc: "Slide-in nav that closes on link tap.", icon: '<i class="fas fa-mobile-screen"></i>' },
+    { title: "Ambient motion", desc: "Orbs, cursor, reveal. All optional.", icon: '<i class="fas fa-wand-magic-sparkles"></i>' }
   ],
-  panels: [
-    { tag: "FRAMEWORK API", title: "devtemDesign({...})", desc: "Single handler, complete layout." },
-    { tag: "PERFORMANCE",   title: "Passive Inertia",     desc: "Intersection Observer + CSS variables." }
+
+  steps: [
+    { title: "Describe content", desc: "Fill the config with your copy and links." },
+    { title: "Pick a template", desc: "Seven built in, or override any token." },
+    { title: "Ship", desc: "One function call paints the page." }
   ],
+
+  yearlyBadge: "Save 20%",
+  pricing: [
+    { tier: "Free", amount: "$0", desc: "For experiments and open source.", features: ["All templates", "CDN ready"], cta: "Start free", href: "#" },
+    { tier: "Pro", amount: "$12", period: "/mo", yearly: { amount: "$115", period: "/yr" },
+      featured: true, badge: "Most popular", desc: "For product landings.", features: ["Everything in Free", "Priority support"], cta: "Go Pro", href: "#" }
+  ],
+
+  faq: [
+    { q: "Do I need a build step?", a: "No. Add two tags and call one function." },
+    { q: "Can I change the colors?", a: "Yes. Pass a theme object to override any token." }
+  ],
+
+  cta: { title: "Ship your landing page today", text: "Read the docs", href: "/docs" },
 
   footer: {
     tagline: "Declarative UI engine for the modern web.",
     columns: [
-      { heading: "Product", links: [
-        { label: "Docs",      href: "/docs"      },
-        { label: "Sandbox",   href: "/sandbox"   },
-        { label: "Changelog", href: "/changelog" }
-      ]},
-      { heading: "Resources", links: [
-        { label: "npm",       href: "https://npmjs.com/package/devtemdesign" },
-        { label: "GitHub",    href: "https://github.com/devtem-dev/devtemDesign" },
-        { label: "DevTemple", href: "https://devtem.org" }
-      ]}
+      { heading: "Product", links: [{ label: "Docs", href: "/docs" }, { label: "Gallery", href: "/gallery" }] },
+      { heading: "Resources", links: [{ label: "npm", href: "https://npmjs.com/package/devtemdesign" }] }
     ],
-    social: [
-      { icon: "fab fa-github",  href: "https://github.com/devtem-dev", label: "GitHub"  },
-      { icon: "fab fa-twitter", href: "https://twitter.com/devtemple", label: "Twitter" }
-    ],
-    legal: [
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms",   href: "/terms"   }
-    ],
-    copy: "© 2025 Figsh Digital · MIT License"
+    social: [{ icon: "fab fa-github", href: "https://github.com/devtem-dev", label: "GitHub" }, { icon: "fab fa-dev", href: "https://dev.to/fscss", label: "DEV" } ],
+    legal: [{ label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" }],
+    copy: "© 2026 devtem-dev · MIT"
   }
 });
 ```
 
 ---
 
-## Built-in Templates
+## JavaScript API
 
-| Template | Vibe | Accent Colors |
-|----------|------|---------------|
-| `figsh` | Futuristic glass | Cyan / Purple / Pink |
-| `cyber` | Neon cyberpunk | Cyan / Magenta / Red |
-| `aurora` | Organic nature | Emerald / Violet / Blue |
-| `monochrome` | Minimalist grayscale | White / Silver |
+```js
+const page = devtemDesign("app-root", config);
+
+page.setTemplate("sunset");   // switch theme at runtime
+page.destroy();               // remove listeners, observers and markup
+
+devtemDesign.version;         // "0.1.0"
+devtemDesign.templates;       // ["figsh", "cyber", "aurora", ...]
+```
 
 ---
 
-## For Developers
+## Templates
 
-### File Structure
+| Template | Vibe | Accents |
+|----------|------|---------|
+| `figsh` | Futuristic glass | Cyan, purple, pink |
+| `cyber` | Neon cyberpunk | Cyan, magenta, red |
+| `aurora` | Organic nature | Emerald, violet, blue |
+| `monochrome` | Minimal grayscale | White, silver |
+| `sunset` | Warm dusk | Orange, rose, gold |
+| `ocean` | Cool depth | Sky, teal, indigo |
+| `paper` | Light mode | Indigo, pink, cyan |
+
+### Custom tokens
+
+Override any token with `theme`. Keys work with or without the `--` prefix.
+
+```js
+theme: { accent: "#ff4d6d", accent2: "#ffb703", "bg-deep": "#0b0710" }
+```
+
+| Token | Purpose |
+|-------|---------|
+| `--accent`, `--accent2`, `--accent3` | Brand colors and gradients |
+| `--text`, `--muted` | Primary and secondary text |
+| `--bg-deep` | Page background (also used for text on filled buttons) |
+| `--glass-bg`, `--glass-border`, `--glass-blur` | Card surfaces |
+| `--surface`, `--line` | Subtle fills and dividers |
+| `--orb` | Ambient orb opacity |
+
+---
+
+## Browser Support
+
+Modern evergreen browsers. Theming uses `color-mix()`, so you need Chrome 111+, Safari 16.2+ or Firefox 113+. Older browsers still render the page but lose some tinted surfaces.
+
+---
+
+## Upgrading from 0.0.2
+
+Most configs work unchanged. A few key names were corrected to match the code:
+
+| Old (0.0.2 docs) | Use now |
+|------------------|---------|
+| `heroTag` | `heroBadge` |
+| `featuresSectionLabel` | `featuresLabel` |
+| `featuresSectionTitle` | `featuresTitle` |
+
+New in 0.1.0: three templates, `theme`, `themeSwitcher`, `stats`, `faq`, `cta`, `yearly` pricing, `ctaHref`, `logoHref`, `cursor`, and the returned `{ setTemplate, destroy }` handle.
+
+---
+
+## File Structure
 
 ```
 devtemDesign/
-├── style.css    # animations, glass effects, grid, marquee, cursor, footer, mobile nav
-├── script.js    # engine core — devtemDesign() + interaction handlers + hamburger
-└── README.md    # you're reading it
+├── style.css    # tokens, glass, grids, marquee, nav, drawer, footer, motion
+├── script.js    # engine: devtemDesign() and all interaction handlers
+└── README.md
 ```
 
-### How to Contribute
+## Contributing
 
 1. Fork the repo: `github.com/devtem-dev/devtemDesign`
-2. Create a branch: `git checkout -b feature/amazing-addon`
-3. Commit: `git commit -m 'Add some amazing thing'`
-4. Push & open a Pull Request
+2. Create a branch: `git checkout -b feature/your-idea`
+3. Commit and push, then open a Pull Request
 
-Ideas for contribution:
+Ideas welcome: more templates, `marqueeSpeed`, testimonials section, RTL support, more footer layouts.
 
-- New templates (pastel, vintage, dark-mono)
-- Extra config options (`enableParallax`, `marqueeSpeed`, `stickyNav`)
-- Additional footer layout variants
-- Accessibility enhancements (ARIA, focus management)
-
-### Local Development
+### Local development
 
 ```bash
 git clone https://github.com/devtem-dev/devtemDesign.git
 cd devtemDesign
-# Open index.html in browser — no build step needed
+# open index.html in a browser. No build step.
 ```
-
----
-
-## CDN Usage (jsDelivr)
-
-```html
-<!-- Pinned version (recommended) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devtemdesign@0.0.2/style.css">
-<script src="https://cdn.jsdelivr.net/npm/devtemdesign@0.0.2/script.js"></script>
-
-<!-- Latest (auto-updates) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devtemdesign/style.css">
-<script src="https://cdn.jsdelivr.net/npm/devtemdesign/script.js"></script>
-```
-
-Font Awesome is required for icon support in features, nav CTA, and footer socials:
-
-```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-```
-
----
-
-## Official Site & Demo
-
-Live examples and interactive playground: **[design.devtem.org](https://design.devtem.org)**
 
 ---
 
 ## License
 
 MIT © [devtem-dev](https://github.com/devtem-dev)
-
----
-
-## Acknowledgments
-
-Built with vanilla CSS/JS — no frameworks, no bloat. Inspired by glassmorphism, orbital animations, and the need for a declarative page builder that actually ships fast.
-
