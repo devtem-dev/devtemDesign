@@ -1,0 +1,45 @@
+name: Compile FSCSS → style.css
+
+on:
+  push:
+    paths:
+      - 'fscss/**'
+      - 'package.json'
+      - '.github/workflows/compile-fscss.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Compile FSCSS
+        run: npx fscss fscss/main.fscss style.css
+
+      - name: Commit compiled CSS (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add style.css
+          if git diff --staged --quiet; then
+            echo "No CSS changes"
+          else
+            git commit -m "ci: compile FSCSS → style.css"
+            git push
+          fi
