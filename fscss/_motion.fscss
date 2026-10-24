@@ -1,0 +1,12 @@
+/* =====================================================
+   REVEAL (animation, so card hover transitions stay intact)
+   ===================================================== */
+.reveal { op: 0; }
+.reveal.visible {
+  op: 1;
+  animation: dtUp 0.7s var(--ease) backwards;
+  animation-delay: calc(var(--d, 0) * 70ms);
+}
+@keyframes dtUp {
+  from { op: 0; transform: translateY(28px); }
+}

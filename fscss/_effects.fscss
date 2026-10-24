@@ -1,0 +1,96 @@
+/* ----- CURSOR + RIPPLE ----- */
+#cursor, #cursor-ring {
+  pos: fixed; top: 0; left: 0; pe: none; rounded: 50%;
+  transform: translate(-50%, -50%); op: 0;
+  transition: opacity 0.25s, transform 0.2s, width 0.2s, height 0.2s, background 0.2s, border-color 0.2s;
+}
+#cursor {
+  size: 10px;
+  bg: var(--accent);
+  z: 9999;
+  mix-blend-mode: screen;
+}
+#cursor-ring {
+  size: 38px;
+  border: 1.5px solid var(--accent);
+  z: 9998;
+}
+#cursor.on { op: 1; }
+#cursor-ring.on { op: 0.5; }
+#cursor.hot {
+  transform: translate(-50%, -50%) scale(2.1);
+  bg: var(--accent2);
+}
+#cursor-ring.hot {
+  size: 56px;
+  border-color: var(--accent2);
+}
+html[data-dt-scheme="light"] #cursor { mix-blend-mode: normal; }
+
+.ripple-container {
+  pos: fixed; inset: 0; pe: none; z: 9985; ov: hidden;
+}
+.ripple {
+  pos: absolute; size: 14px; rounded: 50%;
+  border: 1px solid var(--accent);
+  transform: translate(-50%, -50%) scale(0);
+  animation: dtRipple 0.7s ease-out forwards;
+}
+@keyframes dtRipple {
+  from { op: 0.8; }
+  to { transform: translate(-50%, -50%) scale(12); op: 0; }
+}
+
+/* ----- AMBIENT ORBS + GRAIN ----- */
+.bg-layer {
+  pos: fixed; inset: 0; z: 0; ov: hidden; pe: none;
+}
+.orb {
+  pos: absolute; rounded: 50%;
+  fil: blur(80px);
+  op: var(--orb);
+  animation: drift 18s ease-in-out infinite;
+  will-change: transform;
+}
+.orb1 {
+  size: 600px;
+  bg: radial-gradient(circle, var(--accent), transparent 70%);
+  top: -15%; left: -15%;
+}
+.orb2 {
+  size: 500px;
+  bg: radial-gradient(circle, var(--accent2), transparent 70%);
+  top: 40%; right: -10%;
+  animation-delay: -4s;
+}
+.orb3 {
+  size: 450px;
+  bg: radial-gradient(circle, var(--accent3), transparent 70%);
+  bottom: -5%; left: 20%;
+  animation-delay: -8s;
+}
+.orb4 {
+  size: 350px;
+  bg: radial-gradient(circle, var(--accent), transparent 70%);
+  top: 15%; left: 45%;
+  animation-delay: -2s;
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.06); }
+  66% { transform: translate(-25px, 35px) scale(0.94); }
+}
+@media (max-width: 860px) {
+  .orb { fil: blur(60px); }
+  .orb1 { size: 380px; }
+  .orb2 { size: 320px; }
+  .orb3, .orb4 { display: none; }
+}
+
+body::before {
+  content: '';
+  pos: fixed; inset: 0; z: 1; pe: none;
+  bg-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+  op: 0.03;
+  mix-blend-mode: overlay;
+}

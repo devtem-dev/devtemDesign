@@ -1,0 +1,91 @@
+/* =====================================================
+   PRICING
+   ===================================================== */
+.billing {
+  display: inline-flex; gap: 4px; p: 4px; mb: 36px;
+  border: 1px solid var(--glass-border);
+  rounded: var(--radius-pill);
+  bg: var(--surface);
+}
+.billing button {
+  display: inline-flex; ai: center; gap: 8px;
+  p: 8px 18px; rounded: var(--radius-pill);
+  fs: 0.82rem; fw: 600; color: var(--muted);
+  transition: 0.25s;
+}
+.billing button.active {
+  bg: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: var(--bg-deep);
+}
+.billing em {
+  font-style: normal; fs: 0.66rem;
+  p: 2px 7px; rounded: var(--radius-pill);
+  bg: color-mix(in srgb, var(--accent3) 25%, transparent);
+  color: inherit;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  gap: 22px;
+  ai: stretch;
+}
+
+.price-card {
+  bg: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  rounded: var(--radius-lg);
+  p: 34px 26px;
+  display: flex; fdir: column;
+  transition: transform 0.3s var(--ease), border-color 0.25s;
+}
+@media (hover: hover) {
+  .price-card:hover { transform: translateY(-4px); }
+}
+.price-card.featured {
+  border-color: var(--accent);
+  shadow: 0 0 40px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.price-card.featured::before {
+  content: attr(data-badge);
+  pos: absolute; top: -12px; left: 24px; z: 1;
+  bg: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: var(--bg-deep);
+  fs: 0.7rem; fw: 700;
+  p: 4px 12px; rounded: var(--radius-pill);
+}
+
+.price-tier { fs: 0.9rem; fw: 700; color: var(--muted); mb: 6px; }
+.price-amount {
+  fs: 2.2rem; fw: 800; mb: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.price-amount span {
+  fs: 0.9rem; fw: 500; color: var(--muted); ml: 2px;
+}
+.price-amount.tick { animation: tick 0.35s var(--ease); }
+@keyframes tick {
+  from { op: 0; transform: translateY(6px); }
+  to { op: 1; transform: none; }
+}
+.price-desc { fs: 0.88rem; color: var(--muted); mb: 20px; }
+
+.price-list {
+  display: flex; fdir: column; gap: 11px; mb: 26px; flex: 1;
+}
+.price-list li {
+  display: flex; gap: 10px; fs: 0.9rem; color: var(--muted); ai: flex-start;
+}
+.tick {
+  flex: none; size: 16px; mt: 2px; rounded: 50%; pos: relative;
+  bg: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+.price-list .tick::after {
+  content: '';
+  pos: absolute; left: 5px; top: 3px;
+  w: 4px; h: 7px;
+  border: solid var(--accent);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}

@@ -1,0 +1,44 @@
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+.btn {
+  pos: relative; ov: hidden;
+  display: inline-flex; ai: center; jc: center; gap: 8px;
+  p: 13px 28px; rounded: var(--radius-pill);
+  fs: 0.9rem; fw: 600; ws: nowrap;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s, border-color 0.25s, color 0.25s;
+}
+.btn:active { transform: scale(0.97); }
+.btn-block { w: 100%; }
+
+.btn-primary {
+  bg: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: var(--bg-deep);
+  border: 1px solid transparent;
+}
+.btn-primary::after {
+  content: '';
+  pos: absolute; inset: 0;
+  bg: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.6s var(--ease);
+}
+
+.btn-ghost {
+  border: 1px solid var(--glass-border);
+  color: var(--muted);
+  bg: transparent;
+}
+
+@media (hover: hover) {
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    shadow: 0 10px 30px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  .btn-primary:hover::after { transform: translateX(120%); }
+  .btn-ghost:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    bg: var(--surface);
+  }
+}

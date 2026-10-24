@@ -1,0 +1,81 @@
+/* =====================================================
+   FOOTER
+   ===================================================== */
+.site-footer {
+  pos: relative; z: 2;
+  p: 64px 24px 36px;
+  bg: var(--footer-bg);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--glass-border);
+}
+
+.footer-body {
+  max-w: var(--container); mx: auto; mb: 40px;
+  display: flex; gap: 56px; fwrap: wrap; ai: flex-start;
+}
+
+.footer-brand-col {
+  display: flex; fdir: column; gap: 14px;
+  min-w: 180px; max-w: 280px; flex: 1 1 180px;
+}
+.footer-logo {
+  display: flex; ai: center; gap: 10px;
+  ff: monospace; fw: 800; fs: 1rem; color: var(--accent); ls: 0.1em;
+}
+.footer-tagline { fs: 0.85rem; color: var(--muted); lh: 1.55; }
+
+.footer-socials { display: flex; gap: 10px; fwrap: wrap; }
+.footer-social-link {
+  size: 38px;
+  border: 1px solid var(--glass-border);
+  rounded: 50%;
+  display: flex; ai: center; jc: center;
+  color: var(--muted); fs: 0.9rem;
+  transition: 0.2s;
+}
+.footer-social-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-cols {
+  display: flex; gap: 40px; fwrap: wrap;
+  flex: 3 1 400px; jc: flex-end;
+}
+.footer-col { min-w: 120px; }
+.footer-col-heading {
+  ff: monospace; fs: 0.65rem; ls: 0.16em; tt: uppercase;
+  color: var(--accent); mb: 16px;
+}
+.footer-col-links { display: flex; fdir: column; gap: 10px; }
+.footer-link {
+  fs: 0.88rem; color: var(--muted);
+  transition: color 0.2s, padding-left 0.2s;
+}
+.footer-link:hover { color: var(--text); pl: 3px; }
+
+.footer-bottom {
+  max-w: var(--container); mx: auto;
+  pt: 24px; border-top: 1px solid var(--line);
+  display: flex; ai: center; jc: space-between; fwrap: wrap; gap: 14px;
+}
+.footer-copy, .footer-legal-link {
+  fs: 0.75rem; color: var(--muted);
+  ff: monospace; ls: 0.04em;
+}
+.footer-legal { display: flex; gap: 18px; fwrap: wrap; }
+.footer-legal-link:hover { color: var(--text); }
+
+/* back to top */
+.to-top {
+  pos: fixed; right: 20px; bottom: 20px; z: 90;
+  size: 44px; rounded: 50%;
+  border: 1px solid var(--glass-border);
+  bg: var(--glass-bg); color: var(--accent); fs: 1.1rem;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  op: 0; transform: translateY(12px); pe: none;
+  transition: opacity 0.3s, transform 0.3s, border-color 0.2s;
+}
+.to-top.show { op: 1; transform: none; pe: auto; }
+.to-top:hover { border-color: var(--accent); }

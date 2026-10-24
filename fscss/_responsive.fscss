@@ -1,0 +1,24 @@
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 860px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-menu-btn { display: inline-flex; }
+  .hero { p: 56px 20px 48px; }
+  .section { p: 68px 20px; }
+  .stats-sec { padding-block: 40px; }
+  .footer-body { fdir: column; gap: 36px; }
+  .footer-brand-col { max-w: none; }
+  .footer-cols { jc: flex-start; w: 100%; }
+  #cursor, #cursor-ring { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .site-nav .container { px: 16px; }
+  .hero-actions .btn { w: 100%; }
+  .hero-brands { mt: 40px; rounded: 22px; }
+  .footer-cols { fdir: column; gap: 28px; }
+  .footer-bottom { fdir: column; ai: flex-start; }
+  .price-card.featured::before { left: 20px; }
+  .to-top { right: 14px; bottom: 14px; }
+}

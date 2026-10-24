@@ -1,0 +1,63 @@
+/* =====================================================
+   FAQ + CTA
+   ===================================================== */
+.faq-list {
+  max-w: 760px;
+  display: flex; fdir: column; gap: 12px;
+}
+.faq-item {
+  border: 1px solid var(--glass-border);
+  rounded: var(--radius-md);
+  bg: var(--glass-bg);
+  transition: border-color 0.25s;
+}
+.faq-item[open] { border-color: var(--accent); }
+
+.faq-item summary {
+  list-style: none; cur: pointer;
+  display: flex; jc: space-between; ai: center; gap: 16px;
+  p: 18px 20px; fw: 600; fs: 0.98rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-icon {
+  pos: relative; flex: none; size: 14px;
+}
+.faq-icon::before, .faq-icon::after {
+  content: '';
+  pos: absolute; left: 0; top: 6px;
+  w: 14px; h: 2px; bg: var(--accent); rounded: 2px;
+  transition: transform 0.3s var(--ease);
+}
+.faq-icon::after { transform: rotate(90deg); }
+.faq-item[open] .faq-icon::after { transform: rotate(0); }
+
+.faq-body {
+  p: 0 20px 20px;
+  color: var(--muted);
+  fs: 0.92rem; lh: 1.65;
+  animation: tick 0.35s var(--ease);
+}
+
+/* cta */
+.cta-sec { pt: 24px; }
+.cta-band {
+  ta: center;
+  p: clamp(40px, 8vw, 72px) 24px;
+  rounded: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  pos: relative; ov: hidden;
+  bg:
+    radial-gradient(600px circle at 20% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
+    radial-gradient(600px circle at 80% 100%, color-mix(in srgb, var(--accent2) 16%, transparent), transparent 60%),
+    var(--glass-bg);
+}
+.cta-band h2 {
+  fs: clamp(1.6rem, 4.5vw, 2.6rem);
+  fw: 800; lh: 1.15; max-w: 20ch;
+  mx: auto; mb: 14px;
+  text-wrap: balance;
+}
+.cta-band p {
+  color: var(--muted); max-w: 480px; mx: auto; mb: 28px;
+}

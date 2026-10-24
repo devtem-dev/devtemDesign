@@ -1,0 +1,25 @@
+/* ----- TOKENS (overwritten by the chosen template) ----- */
+:root {
+  --glass-bg: rgba(20, 28, 40, 0.35);
+  --glass-border: rgba(122, 244, 255, 0.18);
+  --glass-blur: blur(20px);
+  --accent: #7af4ff;
+  --accent2: #b77cff;
+  --accent3: #ff7096;
+  --text: #f4f9ff;
+  --muted: rgba(210, 225, 255, 0.6);
+  --bg-deep: #050b14;
+  --surface: rgba(255, 255, 255, 0.04);
+  --line: rgba(255, 255, 255, 0.08);
+  --orb: 0.22;
+
+  --nav-bg: color-mix(in srgb, var(--bg-deep) 78%, transparent);
+  --footer-bg: color-mix(in srgb, var(--bg-deep) 92%, transparent);
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+  --nav-h: 68px;
+  --container: 1120px;
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --ease: cubic-bezier(0.2, 0.9, 0.4, 1);
+}
