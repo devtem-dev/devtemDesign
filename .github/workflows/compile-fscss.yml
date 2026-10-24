@@ -32,7 +32,7 @@ jobs:
       - name: Compile FSCSS
         run: |
           cd fscss
-          npx fscss fscss/main.fscss style.css
+          npx fscss main.fscss ../style.css
 
       - name: Commit compiled CSS (if changed)
         run: |
