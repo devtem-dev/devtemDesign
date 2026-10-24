@@ -3,7 +3,7 @@
 @import((*) from "_tokens.fscss")
 @import((*) from "_base.fscss")
 @import((*) from "_effects.fscss")
-@import((*) from "./_nav.fscss")
+@import((*) from "_nav.fscss")
 @import((*) from "_buttons.fscss")
 @import((*) from "_hero.fscss")
 @import((*) from "_sections.fscss")
