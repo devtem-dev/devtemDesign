@@ -26,9 +26,7 @@
     "url": "https://github.com/sponsors/Figsh"
   },
   "engines": { "node": ">=14.0.0" },
-  "browserslist": ["defaults", "not ie 11", "maintained node versions"], 
-  Add these to your existing package.json:
-
+  "browserslist": ["defaults", "not ie 11", "maintained node versions"],
 "scripts": {
   "build:css": "fscss fscss/main.fscss style.css"
 },
