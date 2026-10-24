@@ -12,7 +12,7 @@
 `devtemDesign` is a lightweight, zero-dependency page engine. Pass one config object and it paints a full landing page: glass cards, ambient motion, reveal animations, a mobile drawer, pricing, FAQ and footer. Plain HTML, CSS and JS. No framework, no build step.
 
 **npm:** `npm i devtemdesign`
-**CDN:** [design.devtem.org](https://design.devtem.org)
+**Docs:** [design.devtem.org](https://design.devtem.org)
 **GitHub:** [github.com/devtem-dev/devtemDesign](https://github.com/devtem-dev/devtemDesign)
 
 ---
