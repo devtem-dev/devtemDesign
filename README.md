@@ -325,7 +325,8 @@ New in 0.1.0: three templates, `theme`, `themeSwitcher`, `stats`, `faq`, `cta`, 
 
 ```
 devtemDesign/
-├── style.css    # tokens, glass, grids, marquee, nav, drawer, footer, motion
+├── fscss/  # source styling using shorthands properties 
+├── style.css    # compiled tokens, glass, grids, marquee, nav, drawer, footer, motion from fscss/... 
 ├── script.js    # engine: devtemDesign() and all interaction handlers
 └── README.md
 ```
